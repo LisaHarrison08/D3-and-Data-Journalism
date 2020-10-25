@@ -1,50 +1,40 @@
 // Data Journalism and D3
 
-// The code for the chart is wrapped inside a function
-// that automatically resizes the chart
-function makeResponsive() {
+// SVG wrapper dimensions are determined by the current width
+var width = parseFloat(d3.select('#scatter').style('width'));
+var height = width*.66;
 
-    // if the SVG area isn't empty when the browser loads, remove it
-    // and replace it with a resized version of the chart
-    var svgArea = d3.select("body").select("svg");
-    if (!svgArea.empty()) {
-      svgArea.remove();
-    }
+var svg = d3.select('#scatter').append('svg');
+
+// Create an SVG coordinate Space
+svg
+  .attr('class', 'chart')
+  .style('border','2px solid black')
+  .style('width',width)
+  .style('height',height)
+
+// xAxis Labels
+var xText = svg.append('g')
+                .attr('class','x aText')
+                .attr('transform',`translate(${width/2},${height})`);
+
+xText
+  .append('text')
+  .text('Household Income (median)')
+  .attr('dataValue','income')
+  .attr('class','inactive')
+  .attr('y',- height*.05);
   
-    // SVG wrapper dimensions are determined by the current width
-    // and height of the browser window.
-    var svgWidth = window.innerWidth;
-    var svgHeight = window.innerHeight;
-    
-    // Set SVG Margins - To Be Adjusted once graph is populated!
-    var margin = {
-      top: 50,
-      right: 50,
-      bottom: 50,
-      left: 50
-    };
+  xText
+  .append('text')
+  .text('Age (Median)')
+  .attr('dataValue','age')
+  .attr('class','inactive')
+  .attr('y',- height*.10);
   
-    var height = svgHeight - margin.top - margin.bottom;
-    var width = svgWidth - margin.left - margin.right;
-
-      // append svg and group
-    var svg = d3.select("#scatter")
-    .append("svg")
-    .attr("height", svgHeight)
-    .attr("width", svgWidth);
-
-    var chartGroup = svg.append("g")
-    .attr("transform", `translate(${margin.left}, ${margin.top})`);
-
-
-
-// Import Data
-
-
-}
-
-// When the browser loads, makeResponsive() is called.
-makeResponsive();
-
-// When the browser window is resized, responsify() is called.
-d3.select(window).on("resize", makeResponsive);
+  xText
+  .append('text')
+  .text('Poverty (%)')
+  .attr('dataValue','poverty')
+  .attr('class','active')
+  .attr('y',- height*.15);
