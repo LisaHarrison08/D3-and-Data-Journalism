@@ -1,6 +1,6 @@
 // Data Journalism and D3
 
-// SVG wrapper dimensions are determined by the current width
+// SVG dimensions 
 var width = parseFloat(d3.select('#scatter').style('width'));
 var height = width*.66;
 
@@ -81,3 +81,5 @@ yText
 
   })
   });
+
+  
