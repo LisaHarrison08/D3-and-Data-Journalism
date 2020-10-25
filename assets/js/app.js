@@ -153,6 +153,8 @@ d3.csv("assets/data/data.csv").then(function (states) {
     .attr("y", 20)
     .attr("value", "poverty") // Value to Grab for Event Listener
     .classed("active", true)
+    .style("font-family",'Kufam')
+    .style("font-size",'18')
     .text("Poverty (%)");
 
   // Append yAxis
@@ -164,6 +166,8 @@ d3.csv("assets/data/data.csv").then(function (states) {
     .attr("x", 0)
     .attr("value", "healthcare")
     .classed("active", true)
+    .style("font-family",'Kufam')
+    .style("font-size",'18')
     .text("Lacks Healthcare (%)");
 
   // updateToolTip Function
