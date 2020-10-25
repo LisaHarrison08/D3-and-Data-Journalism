@@ -125,14 +125,14 @@ d3.csv("assets/data/data.csv").then(function (states) {
     .call(leftAxis);
 
   // Create Circles
-  var circlesGroup = chartGroup.selectAll("circle")
+  var circlesGroup = chartGroup.selectAll(".stateCircle")
     .data(states)
     .enter()
     .append("circle")
     .attr("cx", d => xLinearScale(d[chosenXAxis]))
     .attr("cy", d => yLinearScale(d[chosenYAxis]))
     .attr("r", 18)
-    .attr("fill", "#9370DB")
+    .attr("class", "stateCircle")
     .attr("opacity", ".65");
 
   // Append Text to Circles
@@ -143,9 +143,7 @@ d3.csv("assets/data/data.csv").then(function (states) {
     .attr("x", d => xLinearScale(d[chosenXAxis]))
     .attr("y", d => yLinearScale(d[chosenYAxis] * .98))
     .text(d => (d.abbr))
-    .attr("font-size", "12px")
-    .attr("text-anchor", "middle")
-    .attr("fill", "white");
+    .attr("class", "stateText");
 
   // Append xAxis
   var povertyLabel = chartGroup.append("g")
@@ -178,4 +176,3 @@ d3.csv("assets/data/data.csv").then(function (states) {
       var value = d3.select(this).attr("value");
     });
 });
-
