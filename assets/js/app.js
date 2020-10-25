@@ -1,5 +1,6 @@
 // Data Journalism and D3
 
+
 var svgArea = d3.select("body").select("svg");
 
 // Setup
@@ -180,3 +181,5 @@ d3.csv("assets/data/data.csv").then(function (states) {
       var value = d3.select(this).attr("value");
     });
 });
+
+
