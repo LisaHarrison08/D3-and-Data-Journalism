@@ -64,11 +64,21 @@ function updateToolTip(chosenXAxis, chosenYAxis, circlesGroup, textGroup) {
   if (chosenXAxis === "poverty") {
     var xLabel = "Poverty (%)";
   }
-  // else {}
+  // else if (chosenXAxis === "age") {
+  //   var xLabel = "Age (Median)";
+  // }
+  // else {
+  //   var xLabel = "Household Income (Median)";
+  // }
   if (chosenYAxis === "healthcare") {
     var yLabel = "Lacks Healthcare (%)";
   }
-  // else {}
+  // else if (chosenYAxis === "obesity") {
+  //   var yLabel = "Obese (%)";
+  // }
+  // else {
+  //   var yLabel = "Smokes (%)";
+  // }
 
   // Initialize Tool Tip
   var toolTip = d3.tip()
@@ -146,40 +156,71 @@ d3.csv("assets/data/data.csv").then(function (states) {
     .text(d => (d.abbr))
     .attr("class", "stateText");
 
-  // Append xAxis
-  var povertyLabel = chartGroup.append("g")
-    .attr("transform", `translate(${width / 2}, ${height + 20})`)
-    .append("text")
-    .attr("x", 0)
-    .attr("y", 20)
-    .attr("value", "poverty") // Value to Grab for Event Listener
-    .classed("active", true)
-    .style("font-family",'Kufam')
-    .style("font-size",'18')
-    .text("Poverty (%)");
+  // xAxis Labels
+  var xLabel = svg.append('g')
+    .attr('class', 'x aText')
+    .style("font-family", 'Kufam')
+    .style("font-size", '16')
+    .attr('transform', `translate(${width / 2},${height})`);
 
-  // Append yAxis
-  var healthcareLabel = chartGroup.append("g")
-    .attr("transform", `translate(-25, ${height / 2})`)
-    .append("text")
-    .attr("transform", "rotate(-90)")
-    .attr("y", -30)
-    .attr("x", 0)
-    .attr("value", "healthcare")
-    .classed("active", true)
-    .style("font-family",'Kufam')
-    .style("font-size",'18')
-    .text("Lacks Healthcare (%)");
+  xLabel
+    .append('text')
+    .text('Household Income (median)')
+    .attr('dataValue', 'income')
+    .attr('class', 'inactive')
+    .attr('y', height * .15);
+
+  xLabel
+    .append('text')
+    .text('Age (Median)')
+    .attr('dataValue', 'age')
+    .attr('class', 'inactive')
+    .attr('y', height * .20);
+
+  xLabel
+    .append('text')
+    .text('Poverty (%)')
+    .attr('dataValue', 'poverty')
+    .attr('class', 'active')
+    .attr('y', height * .10);
+
+  // yAxis Labels
+  var yLabel = svg.append('g')
+    .attr('class', 'x aText')
+    .style("font-family", 'Kufam')
+    .style("font-size", '16')
+    .attr('transform', `translate(0,${height / 2})rotate(-90)`);
+
+  yLabel
+    .append('text')
+    .text('Obese (%)')
+    .attr('dataValue', 'obesity')
+    .attr('class', 'inactive')
+    .attr('y', height * .05);
+
+  yLabel
+    .append('text')
+    .text('Smokes (%)')
+    .attr('dataValue', 'smokes')
+    .attr('class', 'inactive')
+    .attr('y', height * .10);
+
+  yLabel
+    .append('text')
+    .text('Lacks Healthcare (%)')
+    .attr('dataValue', 'healthcare')
+    .attr('class', 'active')
+    .attr('y', height * .15);
 
   // updateToolTip Function
   var circlesGroup = updateToolTip(chosenXAxis, chosenYAxis, circlesGroup, textGroup);
 
   // xAxis Labels Event Listener
-  povertyLabel.selectAll("text")
-    .on("click", function () {
-      // Get Value of Selection
-      var value = d3.select(this).attr("value");
-    });
+  // xLabel.selectAll("text")
+  //   .on("click", function () {
+  //     // Get Value of Selection
+  //     var value = d3.select(this).attr("value");
+  //   });
 });
 
 
