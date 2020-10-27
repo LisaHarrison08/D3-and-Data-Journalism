@@ -52,7 +52,7 @@ function yScale(states, chosenYAxis) {
   // Create scale functions (chosenYAxis)
   var yLinearScale = d3.scaleLinear()
     .domain([d3.min(states, d => d[chosenYAxis]) * 0.8,
-    d3.max(states, d => d[chosenYAxis]) * 1.2
+    d3.max(states, d => d[chosenYAxis]) * 1.1
     ])
     .range([height, 0]);
   return yLinearScale;
@@ -152,7 +152,7 @@ d3.csv("assets/data/data.csv").then(function (states) {
     .enter()
     .append("text")
     .attr("x", d => xLinearScale(d[chosenXAxis]))
-    .attr("y", d => yLinearScale(d[chosenYAxis] * .98))
+    .attr("y", d => yLinearScale(d[chosenYAxis]* .98))
     .text(d => (d.abbr))
     .attr("class", "stateText");
 
@@ -214,13 +214,4 @@ d3.csv("assets/data/data.csv").then(function (states) {
 
   // updateToolTip Function
   var circlesGroup = updateToolTip(chosenXAxis, chosenYAxis, circlesGroup, textGroup);
-
-  // xAxis Labels Event Listener
-  // xLabel.selectAll("text")
-  //   .on("click", function () {
-  //     // Get Value of Selection
-  //     var value = d3.select(this).attr("value");
-  //   });
 });
-
-
