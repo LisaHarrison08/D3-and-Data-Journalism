@@ -2,6 +2,8 @@
 
 ![Newsroom](https://media.giphy.com/media/v2xIous7mnEYg/giphy.gif)
 
+## Page deployed to Heroku. Link: https://d3-dabbler.herokuapp.com
+
 ## Background
 
 Welcome to the newsroom! 
